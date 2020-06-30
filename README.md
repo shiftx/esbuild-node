@@ -1,6 +1,6 @@
 # esbuild-node
 
-Run and transpile ts/js with the balzing fast esbuild
+Transform and run ts/js with the blazing fast esbuild
 
 ## Installation
 
