@@ -13,6 +13,9 @@
       "esbuild",
       "node"
     ],
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
+    },
     "bin": {
       "esbuild-node": "./bin/esbuild-node.js"
     },
