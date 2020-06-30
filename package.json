@@ -1,0 +1,28 @@
+{
+    "name": "esbuild-node",
+    "version": "0.1.0",
+    "description": "Transform and execute node scripts with esbuild",
+    "author": "Eigil Sagafos",
+    "homepage": "https://github.com/shiftx/esbuild-node",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/shiftx/esbuild-node.git"
+    },
+    "keywords": [
+      "esbuild",
+      "node"
+    ],
+    "bin": {
+      "esbuild-node": "./bin/esbuild-node.js"
+    },
+    "scripts": {
+        "release": "release-it"
+    },
+    "dependencies": {
+        "esbuild": "0.5.16"
+    },
+    "devDependencies": {
+        "release-it": "13.6.4"
+    }
+  }
