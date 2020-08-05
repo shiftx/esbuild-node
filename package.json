@@ -1,6 +1,6 @@
 {
     "name": "esbuild-node",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Transform and execute node scripts with esbuild",
     "author": "eigilsagafos",
     "homepage": "https://github.com/shiftx/esbuild-node",
