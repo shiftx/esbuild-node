@@ -22,10 +22,11 @@
     "scripts": {
         "release": "release-it"
     },
-    "dependencies": {
-        "esbuild": "0.5.16"
+    "peerDependencies": {
+        "esbuild": ">=0.6.0"
     },
     "devDependencies": {
+        "esbuild": "0.6.16",
         "release-it": "13.6.4"
     }
 }
