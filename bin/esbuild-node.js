@@ -25,12 +25,25 @@ if (!fs.existsSync("./" + script)) {
 // Build
 var buildSync = require("esbuild").buildSync;
 
+// Find all node modules to mark as external
+var findNodeModules = require('find-node-modules');
+var sources = findNodeModules();
+var external = [];
+sources.forEach(function (dir) {
+    var packages = fs.readdirSync(dir);
+    packages.forEach(function (package) {
+        if (package.charAt(0) !== '.')
+            external.push(package);
+    });
+});
+
 var res = buildSync({
     entryPoints: ["./" + script],
     write: false,
     platform: "node",
     bundle: true,
     target: "es2015",
+    external: external
 });
 
 eval(Buffer.from(res.outputFiles[0].contents).toString());
