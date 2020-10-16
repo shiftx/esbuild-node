@@ -28,8 +28,5 @@
     "devDependencies": {
         "esbuild": "0.6.16",
         "release-it": "13.6.4"
-    },
-    "dependencies": {
-        "find-node-modules": "^2.1.0"
     }
 }

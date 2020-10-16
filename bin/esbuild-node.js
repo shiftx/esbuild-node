@@ -26,16 +26,21 @@ if (!fs.existsSync("./" + script)) {
 var buildSync = require("esbuild").buildSync;
 
 // Find all node modules to mark as external
-var findNodeModules = require('find-node-modules');
-var sources = findNodeModules();
+var path = require('path');
 var external = [];
-sources.forEach(function (dir) {
-    var packages = fs.readdirSync(dir);
-    packages.forEach(function (package) {
-        if (package.charAt(0) !== '.')
-            external.push(package);
-    });
-});
+function findNodeModules(dir) {
+    var moduleDir = path.join(dir, 'node_modules');
+    if (fs.existsSync(moduleDir)) {
+        var packages = fs.readdirSync(moduleDir);
+        packages.forEach(function (package) {
+            if (package.charAt(0) !== '.')
+                external.push(package);
+        });
+    }
+    var parent = path.dirname(dir);
+    if (parent !== dir && fs.existsSync(parent)) findNodeModules(parent);
+}
+findNodeModules(process.cwd());
 
 var res = buildSync({
     entryPoints: ["./" + script],
