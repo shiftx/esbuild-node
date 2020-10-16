@@ -7,6 +7,11 @@ process.argv = process.argv.filter(function(_, i) {
     return i !== 2;
 });
 
+if (!script) {
+    console.error("Error: No script provided")
+    process.exit(1)
+}
+
 // Check if script file exists
 var fs = require("fs");
 if (!script.match(/\.(ts|js)x?/)) {
@@ -21,6 +26,10 @@ if (!script.match(/\.(ts|js)x?/)) {
 if (!fs.existsSync("./" + script)) {
     throw new Error("No script found");
 }
+
+var cwd = process.cwd()
+__dirname = cwd
+__filename = cwd + '/' + script
 
 // Build
 var buildSync = require("esbuild").buildSync;
@@ -43,7 +52,7 @@ function findNodeModules(dir) {
 findNodeModules(process.cwd());
 
 var res = buildSync({
-    entryPoints: ["./" + script],
+    entryPoints: [__filename],
     write: false,
     platform: "node",
     bundle: true,
