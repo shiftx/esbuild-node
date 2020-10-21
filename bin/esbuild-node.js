@@ -60,4 +60,21 @@ var res = buildSync({
     external: external
 });
 
-eval(Buffer.from(res.outputFiles[0].contents).toString());
+var Module = require('module');
+var dir = path.dirname(script);
+var scriptModule = new Module(dir);
+scriptModule.filename = script;
+scriptModule.paths = Module._nodeModulePaths(dir);
+
+Object.assign(global, {
+    __filename: script,
+    __dirname: dir,
+    exports: scriptModule.exports,
+    module: scriptModule,
+    require: scriptModule.require.bind(scriptModule)
+});
+
+require('vm').runInThisContext(
+    Buffer.from(res.outputFiles[0].contents).toString(),
+    {filename: script}
+);
