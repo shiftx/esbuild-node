@@ -16,9 +16,10 @@
     "publishConfig": {
         "registry": "https://registry.npmjs.org/"
     },
-    "bin": {
-        "esbuild-node": "./bin/esbuild-node.js"
-    },
+    "bin": "./bin/esbuild-node.js",
+    "files": [
+        "src/esbuild-node.js"
+    ],
     "scripts": {
         "release": "release-it"
     },
