@@ -35,12 +35,11 @@ var buildSync = require("esbuild").buildSync;
 
 var path = require("path");
 
+var getConfig = require("./get-config");
+
 var res = buildSync({
   entryPoints: [__filename],
-  write: false,
-  platform: "node",
-  bundle: true,
-  target: "node" + process.version.match(/v(.+)/)[1],
+  ...getConfig(),
 });
 
 var Module = require("module");
